@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { Token, TokenSearchParams } from '@/lib/types/token.types';
 
-const API_URL = process.env.BASE_URL;
-const API_KEY = process.env.HOLDER_SCAN_API_KEY;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 const api = axios.create({
   baseURL: API_URL,
