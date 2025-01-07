@@ -1,10 +1,13 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useWatchlistStore } from '../../store/watchlist';
-import { AddTokenCard } from './AddTokenCard';
 import { TokenCard } from './TokenCard';
+import { TokenSearchDialog } from './TokenSearchDialog';
+import { AddTokenCard } from './AddTokenCard';
+import { useState } from 'react';
 
 export const TokenWatchlist = () => {
   const { tokens } = useWatchlistStore();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   if (tokens.length === 0) {
     return (
@@ -12,13 +15,14 @@ export const TokenWatchlist = () => {
         <div className="text-center py-8 text-gray-500">
           Your watchlist is empty. Search for tokens to add them to your watchlist.
         </div>
-        <AddTokenCard onClick={() => console.log('add token')} />
+        <AddTokenCard onClick={() => setIsSearchOpen(true)} />
+        <TokenSearchDialog open={isSearchOpen} onOpenChange={setIsSearchOpen} />
       </div>
     );
   }
 
   return (
-    <div className=" grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
       <AnimatePresence>
         {tokens.map((token) => (
           <motion.div
@@ -39,12 +43,13 @@ export const TokenWatchlist = () => {
                 ease: "easeOut"
               }
             }}
-          >  
-            <TokenCard key={token.token_ca} token={token} showRemoveButton />
+          >
+            <TokenCard token={token} showRemoveButton />
           </motion.div>
         ))}
-        <AddTokenCard onClick={() => console.log('add token')} />
       </AnimatePresence>
+      <AddTokenCard onClick={() => setIsSearchOpen(true)} />
+      <TokenSearchDialog open={isSearchOpen} onOpenChange={setIsSearchOpen} />
     </div>
   );
 }; 
