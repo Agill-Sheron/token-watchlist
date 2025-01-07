@@ -1,7 +1,7 @@
 'use client';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { TokenWatchlist } from '../components/tokens/TokenWatchlist';
+import { TokenWatchlist } from '@/components/tokens/TokenWatchlist';
 
 const queryClient = new QueryClient();
 
