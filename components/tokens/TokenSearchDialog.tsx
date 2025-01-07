@@ -51,7 +51,7 @@ export function TokenSearchDialog({ open, onOpenChange }: TokenSearchDialogProps
         <DialogHeader>
           <DialogTitle>Search Tokens</DialogTitle>
         </DialogHeader>
-        <Command shouldFilter={false} className="rounded-lg  shadow-md">
+        <Command shouldFilter={false} className="rounded-lg">
           <CommandInput
             placeholder="Search by token name or ticker..."
             value={searchQuery}
